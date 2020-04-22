@@ -41,7 +41,7 @@
 							<archive>
 								<manifest>
 									<mainClass>
-										hpc.fsi.blackscholes.assetderivativevaluation.BlackScholesMonteCarloValuationTest
+										hpc.fsi.blackscholes.assetderivativevaluation.OptionsPricingModel
 									</mainClass>
 								</manifest>
 							</archive>
