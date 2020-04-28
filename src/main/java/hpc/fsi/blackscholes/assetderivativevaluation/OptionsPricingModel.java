@@ -20,7 +20,9 @@ public class OptionsPricingModel {
 	private final double strike;
 	
 	private final double startTime;
-	private final double lastTime;;
+	private final double lastTime;
+	private  final double maturity;
+
 
 	
 	private final int numberOfPaths;
@@ -28,7 +30,6 @@ public class OptionsPricingModel {
 	
 	private final double riskFreeRate = 0.02;
 	private final double volatility = 0.40;
-	private final double maturity = 3.0;
 
 	// Process discretization properties
 	
@@ -40,6 +41,7 @@ public class OptionsPricingModel {
 
 	public static void main(String[] args) throws IOException, CalculationException, InterruptedException {
 		
+		/*
 		if(args.length < 5)
 		{
 			System.out.println("usage: OptionsPricingModel <initial price> <strike price> <start time> <final time> <num of paths>");
@@ -50,6 +52,12 @@ public class OptionsPricingModel {
 		double finalTime = Double.valueOf(args[3]);
 		int numPaths = Integer.valueOf(args[4]);
 		
+		*/
+		double initialPrice = 10.0;
+		double strikePrice = 11.0;
+		double initTime = 10.0;
+		double finalTime = 14.0;
+		int numPaths = 1000;
 		
 		
 	
@@ -80,6 +88,8 @@ public class OptionsPricingModel {
 		this.startTime = initTime;
 		this.lastTime = finalTime;
 		this.numberOfPaths = numPaths;
+		
+		this.maturity = finalTime;
 		
 		
 		// Create a Model (see method getModel)
@@ -124,7 +134,7 @@ public class OptionsPricingModel {
 		MonteCarloAssetModel simulation = new MonteCarloAssetModel(process);
 
 
-		RandomVariable valueOfEuropeanOption = myEuropeanOption.getValue(0.0, simulation);
+		RandomVariable valueOfEuropeanOption = myEuropeanOption.getValue(maturity, simulation);
 		Double value = valueOfEuropeanOption.average().doubleValue();
 
 		double error = valueOfEuropeanOption.getStandardError();
